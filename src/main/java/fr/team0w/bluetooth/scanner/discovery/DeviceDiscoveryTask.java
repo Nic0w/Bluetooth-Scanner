@@ -9,7 +9,6 @@ import javax.bluetooth.DiscoveryListener;
 import javax.bluetooth.RemoteDevice;
 
 import com.google.common.util.concurrent.CheckedFuture;
-import com.google.common.util.concurrent.ListenableFuture;
 
 
 /**
