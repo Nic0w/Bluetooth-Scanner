@@ -8,6 +8,7 @@ import javax.bluetooth.DiscoveryAgent;
 import javax.bluetooth.DiscoveryListener;
 import javax.bluetooth.RemoteDevice;
 
+import com.google.common.util.concurrent.CheckedFuture;
 import com.google.common.util.concurrent.ListenableFuture;
 
 
@@ -31,7 +32,7 @@ public class DeviceDiscoveryTask {
 	}
 
 		
-	public ListenableFuture<RemoteDevice[]> startDiscovery(DiscoveryListener userListener) {
+	public CheckedFuture<RemoteDevice[], BluetoothStateException> startDiscovery(DiscoveryListener userListener) {
 	 
 	 	if(this.currentDiscovery != null && this.currentDiscovery.isDone()) {
 	 	 	return this.currentDiscovery;

@@ -78,8 +78,19 @@ public class InternalDiscoveryListener implements DiscoveryListener, CheckedFutu
 
 	public RemoteDevice[] get(long timeout, TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException
 	 {
-	  // TODO Auto-generated method stub
-	  return null;
+	  long stopTime  = System.currentTimeMillis() + unit.toMillis(timeout);
+	  
+	  while(System.currentTimeMillis() <= stopTime) {
+	   
+	   	if(this.isDone()) return this.get();
+	   
+	   	Thread.sleep(10);
+	  }
+	  
+	  if(this.isDone()) 
+	   return this.get(); 
+	  else
+	   throw new TimeoutException();
 	 }
 
 	public RemoteDevice[] checkedGet() throws BluetoothStateException {
@@ -90,8 +101,19 @@ public class InternalDiscoveryListener implements DiscoveryListener, CheckedFutu
 	 }
 
 	public RemoteDevice[] checkedGet(long timeout, TimeUnit unit) throws TimeoutException, BluetoothStateException {
-	  // TODO Auto-generated method stub
-	  return null;
+	  	if(this.exception == null) {
+	  	 	try {
+			  return this.get(timeout, unit);
+			 }
+			catch (InterruptedException e) {
+			  return null;
+			 }
+			catch (ExecutionException e) {
+			  return null;
+			 }
+	  	}
+	  	else
+	  	 	throw this.exception;
 	 }
 
 	public void deviceDiscovered(RemoteDevice arg0, DeviceClass arg1) {
@@ -107,17 +129,16 @@ public class InternalDiscoveryListener implements DiscoveryListener, CheckedFutu
 	  	this.isDone = true;
 	}
 
-	public void serviceSearchCompleted(int arg0, int arg1)
-	 {
-	  // TODO Auto-generated method stub
+	public void serviceSearchCompleted(int arg0, int arg1) {
+	  	
+	 	if(this.externalListener != null) this.externalListener.serviceSearchCompleted(arg0, arg1);
 	  
-	 }
+	}
 
-	public void servicesDiscovered(int arg0, ServiceRecord[] arg1)
-	 {
-	  // TODO Auto-generated method stub
+	public void servicesDiscovered(int arg0, ServiceRecord[] arg1) {
+	  	if(this.externalListener != null) this.externalListener.servicesDiscovered(arg0, arg1);
 	  
-	 }
+	}
 
 
 }
