@@ -7,19 +7,13 @@ import javax.bluetooth.DeviceClass;
 
 /**
  * @author nic0w
- *
+ * 
  */
-public enum DeviceType
- {
-  MOBILE_PHONE,
-  COMPUTER,
-  LAPTOP,
-  HEADPHONE,
-  UNKNOWN;
-  
-  public static DeviceType getTypeFromClass(DeviceClass devClass) {
-   
-   
-   return MOBILE_PHONE;
-  }
- }
+public enum DeviceType {
+	MOBILE_PHONE, COMPUTER, LAPTOP, HEADPHONE, UNKNOWN;
+
+	public static DeviceType getTypeFromClass(DeviceClass devClass) {
+
+		return MOBILE_PHONE;
+	}
+}

@@ -14,11 +14,6 @@
   </build>
   <dependencies>
   	<dependency>
-  		<groupId>net.sf.bluecove</groupId>
-  		<artifactId>bluecove</artifactId>
-  		<version>2.1.0</version>
-  	</dependency>
-  	<dependency>
   		<groupId>com.google.guava</groupId>
   		<artifactId>guava</artifactId>
   		<version>11.0.1</version>
@@ -28,5 +23,22 @@
   		<artifactId>bluecove-gpl</artifactId>
   		<version>2.1.0</version>
   	</dependency>
+  	<dependency>
+  		<groupId>net.sf.bluecove</groupId>
+  		<artifactId>bluecove</artifactId>
+  		<version>2.1.1</version>
+  	</dependency>
   </dependencies>
+  <repositories>
+   <repository>
+    <id>pyx4j-web-snapshot</id>
+     <url>http://repository.pyx4j.com/maven2-snapshot</url>
+      <snapshots>
+       <enabled>true</enabled>
+      </snapshots>
+      <releases>
+      <enabled>false</enabled>
+     </releases>
+    </repository>
+  </repositories>
 </project>
